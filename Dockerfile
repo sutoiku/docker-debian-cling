@@ -22,7 +22,7 @@ RUN apt-get update && apt-get upgrade -y && \
    mkdir -p /usr/local2/etc && \
    cd /usr/local2/etc && ln -s ../include root && \
    apt-get autoremove -y && apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
-   apt-get install -q -y curl g++ --no-install-recommends || true; \
+   apt-get install -q -y curl libstdc++-5-dev --no-install-recommends || true; \
    apt-get autoremove -y && apt-get autoclean -y && \
    rm -rf /var/lib/apt/lists/* /tmp/* /root/root6 && \
    rm -rf /usr/local && mv /usr/local2 /usr/local
