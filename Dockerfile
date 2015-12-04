@@ -3,9 +3,9 @@ FROM debian:stretch
 # Install root6 extract cling and delete root6
 RUN apt-get update && \
    mv /usr/local /usr/local2 && mkdir /usr/local && \
-   export BUILD_PACKAGES='git-core make python libz-dev' && \
-   apt-get install -q -y curl g++ $BUILD_PACKAGES --no-install-recommends || \
-   apt-get install -q -y curl g++ $BUILD_PACKAGES --no-install-recommends; \
+   export BUILD_PACKAGES='g++ git-core make python libz-dev' && \
+   apt-get install -q -y curl libgcc-5-dev $BUILD_PACKAGES --no-install-recommends || \
+   apt-get install -q -y curl libgcc-5-dev $BUILD_PACKAGES --no-install-recommends; \
    cd root && mkdir root6 && cd root6 && \
    git clone --depth 1 https://github.com/y--/root src && \
    mkdir obj && cd obj && \
