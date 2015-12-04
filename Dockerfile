@@ -3,8 +3,9 @@ FROM debian:stretch
 # Install root6 extract cling and delete root6
 RUN apt-get update && \
    mv /usr/local /usr/local2 && mkdir /usr/local && \
-   export BUILD_PACKAGES='cmake g++ git-core make python libz-dev' && \
-   apt-get install -q -y curl $BUILD_PACKAGES || apt-get install -q -y $BUILD_PACKAGES; \
+   export BUILD_PACKAGES='git-core make python libz-dev' && \
+   apt-get install -q -y curl g++ $BUILD_PACKAGES --no-install-recommends || \
+   apt-get install -q -y curl g++ $BUILD_PACKAGES --no-install-recommends; \
    cd root && mkdir root6 && cd root6 && \
    git clone --depth 1 https://github.com/root-mirror/root src && \
    mkdir obj && cd obj && \
@@ -20,7 +21,8 @@ RUN apt-get update && \
    cp -r /usr/local/etc/root/cling/llvm /usr/local2/include && \
    mkdir -p /usr/local2/etc && \
    cd /usr/local2/etc && ln -s ../include root && \
-   apt-get autoremove -y &&  apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
+   apt-get autoremove -y && apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
+   apt-get install -q -y curl g++ --no-install-recommends || true; \
    rm -rf /var/lib/apt/lists/* /tmp/* /root/root6 && \
    rm -rf /usr/local && mv /usr/local2 /usr/local
 
