@@ -19,7 +19,7 @@ RUN apt-get update && \
    cp -r /usr/local/etc/root/cling /usr/local2/include && rm -rf /usr/local2/include/cling/cint && \
    cp -r /usr/local/etc/root/cling/llvm /usr/local2/include && \
    mkdir -p /usr/local2/etc && \
-   cd /usr/local2/etc && ln -s /usr/local2/include root && \
+   cd /usr/local2/etc && ln -s ../include root && \
    apt-get autoremove -y &&  apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
    rm -rf /var/lib/apt/lists/* /tmp/* /root/root6 && \
    rm -rf /usr/local && mv /usr/local2 /usr/local
