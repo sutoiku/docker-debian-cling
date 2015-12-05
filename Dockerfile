@@ -29,5 +29,6 @@ RUN \
    apt-get autoremove -y && apt-get autoclean -y && \
    rm -rf /var/lib/apt/lists/* /tmp/* /root/root6 && \
    rm -rf /usr/local && mv /usr/local2 /usr/local
-
+#TODO: figure out how to leave the libc++ headers in place as sling uses them.
+ENV ROOT_INCLUDE /usr/include/c++/5:/usr/include/x86_64-linux-gnu/c++/5:/usr/include/c++/5/backward
 ENV LD_LIBRARY_PATH=/usr/local/lib
