@@ -1,13 +1,16 @@
-FROM debian:stretch
-
 # Install root6 extract cling and delete root6
-RUN apt-get update && apt-get upgrade -y && \
+RUN \
+# Use our cache
+#   echo 'Acquire::HTTP::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/01proxy && \
+#   echo 'Acquire::HTTPS::Proxy "false";' >> /etc/apt/apt.conf.d/01proxy && \
+   apt-get update && \
    mv /usr/local /usr/local2 && mkdir /usr/local && \
-   export BUILD_PACKAGES='g++ git-core make python libz-dev rsync openssl ca-certificates' && \
-   apt-get install -q -y curl libgcc-5-dev $BUILD_PACKAGES --no-install-recommends || \
-   apt-get install -q -y curl libgcc-5-dev $BUILD_PACKAGES --no-install-recommends; \
+   export BUILD_PACKAGES='git-core make python libz-dev rsync curl ca-certificates g++' && \
+   apt-get install -q -y $BUILD_PACKAGES --no-install-recommends || \
+   apt-get install -q -y $BUILD_PACKAGES --no-install-recommends; \
    cd root && mkdir root6 && cd root6 && \
-   git clone --depth 1 https://github.com/y--/root src && \
+# Use a small patch so we dont need to have g++ on the command-line:
+   git clone --depth 1 https://github.com/Y--/root src && \
    mkdir obj && cd obj && \
    ../src/configure --minimal --enable-cxx14 --prefix=/usr/local && \
    make -j $(nproc) && \
@@ -22,7 +25,7 @@ RUN apt-get update && apt-get upgrade -y && \
    mkdir -p /usr/local2/etc && \
    cd /usr/local2/etc && ln -s ../include root && \
    apt-get autoremove -y && apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
-   apt-get install -q -y curl libstdc++-5-dev --no-install-recommends || true; \
+#   rm /etc/apt/apt.conf.d/01proxy
    apt-get autoremove -y && apt-get autoclean -y && \
    rm -rf /var/lib/apt/lists/* /tmp/* /root/root6 && \
    rm -rf /usr/local && mv /usr/local2 /usr/local
