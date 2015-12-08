@@ -28,8 +28,8 @@ RUN \
    apt-get autoremove -y &&  apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
    apt-get install -q -y libstdc++-5-dev --no-install-recommends && \
    rm -rf /var/lib/apt/lists/* /usr/share/doc /tmp/* /root/root6 && \
-   rm -rf /usr/local && mv /usr/local2 /usr/local && \
-   rm /etc/apt/apt.conf.d/01proxy
+   rm -rf /usr/local && mv /usr/local2 /usr/local
+   # rm /etc/apt/apt.conf.d/01proxy
 
 ENV LD_LIBRARY_PATH=/usr/local/lib
 ENV ROOT_INCLUDE=/usr/include/c++/5:/usr/include/x86_64-linux-gnu/c++/5:/usr/include/c++/5/backward
