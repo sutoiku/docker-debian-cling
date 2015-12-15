@@ -17,10 +17,11 @@ RUN \
    make -j $(nproc) && \
    for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done && \
    make install || true; \
-   cp /usr/local/lib/root/libCling.so /usr/local2/lib && \
-   cp /usr/local/lib/root/libCore.so /usr/local2/lib && \
-   cp /usr/local/lib/root/libRIO.so /usr/local2/lib && \
-   cp /usr/local/lib/root/libThread.so /usr/local2/lib && \
+   mkdir -p /usr/local2/lib/root && \
+   cp /usr/local/lib/root/libCling.so /usr/local2/lib/root && \
+   cp /usr/local/lib/root/libCore.so /usr/local2/lib/root && \
+   cp /usr/local/lib/root/libRIO.so /usr/local2/lib/root && \
+   cp /usr/local/lib/root/libThread.so /usr/local2/lib/root && \
    cp -r /usr/local/etc/root/cling /usr/local2/include && rm -rf /usr/local2/include/cling/cint && \
    cp -r /usr/local/etc/root/cling/llvm /usr/local2/include && \
    mkdir -p /usr/local2/etc && \
