@@ -3,7 +3,7 @@ FROM debian:stretch
 # Install root6 extract cling and delete root6
 RUN \
    mkdir -p /etc/apt/apt.conf.d/ && \
-   apt-get update && \
+   apt-get update && apt-get upgrade -y -q && \
    mv /usr/local /usr/local2 && mkdir /usr/local && \
    export BUILD_PACKAGES='git-core make python libz-dev rsync g++' && \
    apt-get install libstdc++-5-dev --no-install-recommends && \
