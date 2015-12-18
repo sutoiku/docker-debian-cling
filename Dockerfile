@@ -31,3 +31,4 @@ RUN \
    rm -rf /usr/local && mv /usr/local2 /usr/local
 
 ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/root
+ENV ROOT_INCLUDE /usr/include/c++/4.9:/usr/include/x86_64-linux-gnu/c++/4.9:/usr/include/c++/4.9/backward
