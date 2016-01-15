@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:testing
 
 # Install root6 extract cling and delete root6
 # Use our cache
