@@ -4,10 +4,12 @@ FROM debian:testing
 # Use our cache
 RUN \
    mkdir -p /etc/apt/apt.conf.d/ && \
-   apt-get update && \
-   mv /usr/local /usr/local2 && mkdir /usr/local && \
-   export BUILD_PACKAGES='git-core make python libz-dev rsync clang' && \
    apt-get clean && \
+   apt-get update && \
+   apt-get upgrade && \
+   mv /usr/local /usr/local2 && mkdir /usr/local && \
+   apt-get clean && \
+   export BUILD_PACKAGES='git-core make python libz-dev rsync clang' && \
    apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends || \
    apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends; \
    cd root && mkdir root6 && cd root6 && \
