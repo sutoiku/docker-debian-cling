@@ -22,7 +22,7 @@ RUN \
                     --cflags='-D_GLIBCXX_USE_CXX11_ABI=0'   \
                     --cxxflags='-D_GLIBCXX_USE_CXX11_ABI=0' \
                     --with-clang && \
-   make -j`nproc` && \
+   make && \
    for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done && \
    make install || true; \
    mkdir -p /usr/local2/lib/root && \
