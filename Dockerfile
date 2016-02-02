@@ -6,7 +6,7 @@ RUN \
    mkdir -p /etc/apt/apt.conf.d/ && \
    apt-get clean && \
    apt-get update && \
-   apt-get upgrade && \
+   apt-get upgrade -y && \
    mv /usr/local /usr/local2 && mkdir /usr/local && \
    apt-get clean && \
    export BUILD_PACKAGES='git-core make python libz-dev rsync clang' && \
