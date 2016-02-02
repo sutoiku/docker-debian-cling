@@ -11,7 +11,12 @@ RUN \
    cd root && mkdir root6 && cd root6 && \
    git clone --depth 1 https://github.com/root-mirror/root src && \
    mkdir obj && cd obj && \
-    ../src/configure --minimal --enable-cxx14 --prefix=/usr/local --with-clang && \
+   ../src/configure --minimal                               \
+                    --enable-cxx14                          \
+                    --prefix=/usr/local                     \
+                    --cflags='-D_GLIBCXX_USE_CXX11_ABI=0'   \
+                    --cxxflags='-D_GLIBCXX_USE_CXX11_ABI=0' \
+                    --with-clang && \
    make -j $(nproc) && \
    for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done && \
    make install || true; \
