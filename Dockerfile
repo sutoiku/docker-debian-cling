@@ -8,8 +8,8 @@ RUN \
    mv /usr/local /usr/local2 && mkdir /usr/local && \
    export BUILD_PACKAGES='git-core make python libz-dev rsync clang' && \
    apt-get clean && \
-   apt-get install -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends || \
-   apt-get install -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends; \
+   apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends || \
+   apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends; \
    cd root && mkdir root6 && cd root6 && \
    git clone --depth 1 https://github.com/root-mirror/root src && \
    mkdir obj && cd obj && \
