@@ -30,6 +30,10 @@ RUN \
    CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"      \
    make -j`nproc`  && \
    for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done && \
+   CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0" \
+   CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"        \
+   CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"      \
+   CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"      \
    make install || true; \
    mkdir -p /usr/local2/lib/root && \
    cp /usr/local/lib/root/libCling.so /usr/local2/lib/root && \
