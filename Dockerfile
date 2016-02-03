@@ -20,9 +20,8 @@ RUN \
                     --enable-cxx14                          \
                     --prefix=/usr/local                     \
                     --cflags='-D_GLIBCXX_USE_CXX11_ABI=0'   \
-                    --cxxflags='-D_GLIBCXX_USE_CXX11_ABI=0' \
-                    --with-clang && \
-   make && \
+                    --cxxflags='-D_GLIBCXX_USE_CXX11_ABI=0' && \
+   make -j`nproc`  && \
    for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done && \
    make install || true; \
    mkdir -p /usr/local2/lib/root && \
