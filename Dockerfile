@@ -14,9 +14,10 @@ RUN \
    apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends; \
    cd root && mkdir root6 && cd root6 && \
    git clone --depth 1 https://github.com/root-mirror/root src && \
-   mkdir obj && cd obj
+   mkdir obj
 
 RUN \
+   cd root/root6/obj && \
    ../src/configure --minimal                               \
                     --enable-cxx14                          \
                     --prefix=/usr/local                     \
