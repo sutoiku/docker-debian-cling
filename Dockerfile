@@ -3,7 +3,7 @@ FROM debian:testing
 # Install root6 extract cling and delete root6
 # Use our cache
 RUN \
-   mkdir -p /etc/apt/apt.conf.d/ && \
+   mkdir -p /etc/apt/apt.conf.d && \
    apt-get clean -q && \
    apt-get update -q && \
    apt-get upgrade -q -y && \
