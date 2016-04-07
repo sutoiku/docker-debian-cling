@@ -45,7 +45,7 @@ RUN echo "Hello v20160405"; \
    cp -r /usr/local/etc/root/cling/llvm /usr/local2/include && \
    mkdir -p /usr/local2/etc && \
    cd /usr/local2/etc && ln -s ../include root && \
-   cp /usr/local2/etc/root/allDict.cxx.pch /usr/local/etc/root/allDict.cxx.pch && \
+   cp /usr/local/etc/root/allDict.cxx.pch /usr/local2/etc/root/allDict.cxx.pch && \
    apt-get autoremove -y &&  apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
    apt-get install -q -y libc++-dev --no-install-recommends && \
    rm -rf /var/lib/apt/lists/* /usr/share/doc /tmp/* /root/root6 /var/log/* /var/cache/* && \
