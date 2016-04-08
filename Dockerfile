@@ -68,7 +68,8 @@ RUN echo "v20160408"; \
           /var/log/*                                                                          \
           /var/cache/*                                                                        \
           /usr/local                                                                       && \
-   mv /usr/local2 /usr/local
+   mv /usr/local2 /usr/local                                                               && \
+   ln -s /usr/local/include/cling /usr/local/etc/root/cling
 
 ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/root
 ENV ROOT_INCLUDE /usr/include/c++/5:/usr/include/x86_64-linux-gnu/c++/5:/usr/include/c++/5/backward
