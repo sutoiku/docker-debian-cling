@@ -1,8 +1,7 @@
 FROM debian:testing
 
 # Install root6 extract cling and delete root6
-# Use our cache -- update
-RUN echo "Hello v20160405"; \
+RUN echo "v20160408"; \
    mkdir -p /etc/apt/apt.conf.d                                                            && \
    apt-get clean -q                                                                        && \
    apt-get update -q                                                                       && \
