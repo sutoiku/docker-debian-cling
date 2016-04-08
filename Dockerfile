@@ -15,6 +15,9 @@ RUN echo "Hello v20160405"; \
    cd root && mkdir root6 && cd root6                                                      && \
    git clone -q --depth 1 https://github.com/root-mirror/root src                          && \
    mkdir obj && cd obj                                                                     && \
+   #                                                                                          \
+   # Configure                                                                                \
+   #                                                                                          \
    CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                 \
    CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                        \
    CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
@@ -24,17 +27,26 @@ RUN echo "Hello v20160405"; \
                     --prefix=/usr/local                                                       \
                     --cflags='-D_GLIBCXX_USE_CXX11_ABI=0'                                     \
                     --cxxflags='-D_GLIBCXX_USE_CXX11_ABI=0'                                && \
+   #                                                                                          \
+   # Build                                                                                    \
+   #                                                                                          \
    CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                 \
    CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                        \
    CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
    CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
    make -j`nproc`                                                                          && \
    for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done                                  && \
+   #                                                                                          \
+   # Install                                                                                  \
+   #                                                                                          \
    CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                 \
    CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                        \
    CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
    CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
    make install || true;                                                                      \
+   #                                                                                          \
+   # Clean                                                                                    \
+   #                                                                                          \
    mkdir -p /usr/local2/lib/root                                                           && \
    cp     /usr/local/lib/root/libCling.so  /usr/local2/lib/root                            && \
    cp     /usr/local/lib/root/libCore.so   /usr/local2/lib/root                            && \
