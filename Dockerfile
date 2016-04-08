@@ -50,10 +50,10 @@ RUN echo "Hello v20160405"; \
    rm -rf /usr/local/include/cling/cint                                                    && \
    mkdir -p /usr/local2/lib/root                                                           && \
    mkdir -p /usr/local2/etc                                                                && \
-   cp     /usr/local/lib/root/libCling.so.so   /usr/local2/lib/root                        && \
-   cp     /usr/local/lib/root/libCore.so.so    /usr/local2/lib/root                        && \
-   cp     /usr/local/lib/root/libRIO.so.so     /usr/local2/lib/root                        && \
-   cp     /usr/local/lib/root/libThread.so.so  /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libCling.so      /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libCore.so       /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libRIO.so        /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libThread.so     /usr/local2/lib/root                        && \
    cp -r  /usr/local/include                   /usr/local2/                                && \
    cp -r  /usr/local/etc/root/cling            /usr/local2/include                         && \
    cp -r  /usr/local/etc/root/cling/llvm       /usr/local2/include                         && \
