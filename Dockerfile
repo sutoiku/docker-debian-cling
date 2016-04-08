@@ -49,7 +49,7 @@ RUN echo "Hello v20160405"; \
    #                                                                                          \
    rm -rf /usr/local/include/cling/cint                                                    && \
    mkdir -p /usr/local2/lib/root                                                           && \
-   mkdir -p /usr/local2/etc                                                                && \
+   mkdir -p /usr/local2/etc/root                                                           && \
    cp     /usr/local/lib/root/libCling.so      /usr/local2/lib/root                        && \
    cp     /usr/local/lib/root/libCore.so       /usr/local2/lib/root                        && \
    cp     /usr/local/lib/root/libRIO.so        /usr/local2/lib/root                        && \
