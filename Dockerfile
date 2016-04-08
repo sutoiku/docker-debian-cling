@@ -47,21 +47,30 @@ RUN echo "Hello v20160405"; \
    #                                                                                          \
    # Clean                                                                                    \
    #                                                                                          \
+   rm -rf /usr/local/include/cling/cint                                                    && \
    mkdir -p /usr/local2/lib/root                                                           && \
-   cp     /usr/local/lib/root/libCling.so  /usr/local2/lib/root                            && \
-   cp     /usr/local/lib/root/libCore.so   /usr/local2/lib/root                            && \
-   cp     /usr/local/lib/root/libRIO.so    /usr/local2/lib/root                            && \
-   cp     /usr/local/lib/root/libThread.so /usr/local2/lib/root                            && \
-   cp -r  /usr/local/etc/root/cling        /usr/local2/include                             && \
-   rm -rf /usr/local2/include/cling/cint                                                   && \
-   cp -r  /usr/local/etc/root/cling/llvm   /usr/local2/include                             && \
    mkdir -p /usr/local2/etc                                                                && \
-   cd /usr/local2/etc && ln -s ../include root                                             && \
-   cp /usr/local/etc/root/allDict.cxx.pch  /usr/local2/etc/root/allDict.cxx.pch            && \
-   apt-get autoremove -y &&  apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto` && \
+   cp     /usr/local/lib/root/libCling.so.so   /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libCore.so.so    /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libRIO.so.so     /usr/local2/lib/root                        && \
+   cp     /usr/local/lib/root/libThread.so.so  /usr/local2/lib/root                        && \
+   cp -r  /usr/local/include                   /usr/local2/                                && \
+   cp -r  /usr/local/etc/root/cling            /usr/local2/include                         && \
+   cp -r  /usr/local/etc/root/cling/llvm       /usr/local2/include                         && \
+   cp     /usr/local/etc/root/allDict.cxx.pch  /usr/local2/etc/root/allDict.cxx.pch        && \
+   ln -s  /usr/local2/include                  /usr/local2/etc/root                        && \
+   apt-get autoremove -y                                                                   && \
+   apt-get autoclean  -y                                                                   && \
+   apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto`                           && \
    apt-get install -q -y libc++-dev --no-install-recommends                                && \
-   rm -rf /var/lib/apt/lists/* /usr/share/doc /tmp/* /root/root6 /var/log/* /var/cache/*   && \
-   rm -rf /usr/local && mv /usr/local2 /usr/local
+   rm -rf /var/lib/apt/lists/*                                                                \
+          /usr/share/doc                                                                      \
+          /tmp/*                                                                              \
+          /root/root6                                                                         \
+          /var/log/*                                                                          \
+          /var/cache/*                                                                        \
+          /usr/local                                                                       && \
+   mv /usr/local2 /usr/local
 
 ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/root
 ENV ROOT_INCLUDE /usr/include/c++/5:/usr/include/x86_64-linux-gnu/c++/5:/usr/include/c++/5/backward
