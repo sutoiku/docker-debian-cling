@@ -1,7 +1,7 @@
 FROM debian:testing
 
 # Install root6 extract cling and delete root6
-RUN echo "v20160409"; \
+RUN echo "v20160429"; \
    mkdir -p /etc/apt/apt.conf.d                                                            && \
    apt-get clean -q                                                                        && \
    apt-get update -q                                                                       && \
