@@ -57,10 +57,10 @@ RUN echo "v20160429"; \
    cp -r  /usr/local/etc/root/cling            /usr/local2/include                         && \
    cp -r  /usr/local/etc/root/cling/llvm       /usr/local2/include                         && \
    cp     /usr/local/etc/root/allDict.cxx.pch  /usr/local2/etc/root/allDict.cxx.pch        && \
+   apt-get remove --purge -y $BUILD_PACKAGES                                               && \
    apt-get autoremove -y                                                                   && \
-   apt-get autoclean  -y                                                                   && \
-   apt-get remove --purge -y $BUILD_PACKAGES `apt-mark showauto`                           && \
    apt-get install -q -y libc++-dev --no-install-recommends                                && \
+   apt-get autoclean -y                                                                    && \
    rm -rf /var/lib/apt/lists/*                                                                \
           /usr/share/doc                                                                      \
           /tmp/*                                                                              \
