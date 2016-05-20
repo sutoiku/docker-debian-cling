@@ -4,8 +4,8 @@ FROM debian:testing
 RUN echo "v20160509"; \
    mkdir -p /etc/apt/apt.conf.d                                                            && \
    apt-get clean -q                                                                        && \
-   apt-get update -q                                                                       && \
-   apt-get upgrade -q -y                                                                   && \
+   apt-get update -q     || apt-get update -q                                              && \
+   apt-get upgrade -q -y || apt-get upgrade -q -y                                          && \
    mv /usr/local /usr/local2 && mkdir /usr/local                                           && \
    apt-get clean -q                                                                        && \
    export BUILD_PACKAGES='git-core make python libz-dev rsync gcc g++'                     && \
