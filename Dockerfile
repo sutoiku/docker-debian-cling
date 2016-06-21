@@ -8,11 +8,12 @@ RUN echo "v20160609"; \
    apt-get upgrade -q -y || apt-get upgrade -q -y                                          && \
    mv /usr/local /usr/local2 && mkdir /usr/local                                           && \
    apt-get clean -q                                                                        && \
-   export BUILD_PACKAGES='git-core cmake make python libz-dev rsync gcc g++'                     && \
+   export BUILD_PACKAGES='git-core cmake make python libz-dev rsync gcc g++'               && \
    (apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends ||  \
     apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends) && \
    cd root && mkdir root6 && cd root6                                                      && \
-   git clone -q --depth 1 https://github.com/root-mirror/root src                          && \
+   git clone -q --single-branch --branch master https://github.com/root-mirror/root src    && \
+   git checkout v6-07-07-aliceml                                                           && \
    mkdir obj && cd obj                                                                     && \
    #                                                                                          \
    # Configure                                                                                \
