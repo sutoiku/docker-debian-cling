@@ -3,7 +3,7 @@ FROM debian:testing
 # Install root6 extract cling and delete root6
 RUN echo "v20160609"; \
    apt-get update -q                                                                                  && \
-   export BUILD_PACKAGES='git-core cmake libz-dev python gcc g++'                                     && \
+   export BUILD_PACKAGES='git-core make cmake libz-dev python gcc g++'                                && \
    apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends              && \
    cd root && mkdir root6 && cd root6                                                                 && \
    #                                                                                                     \
