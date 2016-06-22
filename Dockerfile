@@ -13,7 +13,7 @@ RUN echo "v20160609"; \
     apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends) && \
    cd root && mkdir root6 && cd root6                                                      && \
    git clone -q --single-branch --branch master https://github.com/root-mirror/root src    && \
-   git checkout v6-07-07-aliceml                                                           && \
+   cd src && git checkout v6-07-07-aliceml && cd ..                                        && \
    mkdir obj && cd obj                                                                     && \
    #                                                                                          \
    # Configure                                                                                \
