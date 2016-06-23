@@ -2,48 +2,37 @@ FROM debian:testing
 
 # Install root6 extract cling and delete root6
 RUN echo "v20160609"; \
-   mkdir -p /etc/apt/apt.conf.d                                                            && \
    apt-get clean -q                                                                        && \
    apt-get update -q     || apt-get update -q                                              && \
    apt-get upgrade -q -y || apt-get upgrade -q -y                                          && \
    mv /usr/local /usr/local2 && mkdir /usr/local                                           && \
    apt-get clean -q                                                                        && \
-   export BUILD_PACKAGES='git-core cmake make python libz-dev rsync gcc g++'               && \
+   export BUILD_PACKAGES='git-core dpkg-dev cmake python liblzma-dev ninja-build make g++ gcc binutils'  && \
    (apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends ||  \
     apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends) && \
-   cd root && mkdir root6 && cd root6                                                      && \
-   git clone -q --single-branch --branch master https://github.com/root-mirror/root src    && \
-   cd src && git checkout v6-07-07-aliceml && cd ..                                        && \
+   cd /root && mkdir root6 && cd root6 && echo "Cloning root6" && \
+   git clone --depth 1 --single-branch --branch master https://github.com/root-mirror/root src && \
    mkdir obj && cd obj                                                                     && \
-   #                                                                                          \
-   # Configure                                                                                \
-   #                                                                                          \
-   CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                 \
-   CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                        \
-   CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
-   CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
-   ../src/configure --minimal                                                                 \
-                    --enable-cxx14                                                            \
-                    --prefix=/usr/local                                                       \
-                    --cflags='-D_GLIBCXX_USE_CXX11_ABI=0'                                     \
-                    --cxxflags='-D_GLIBCXX_USE_CXX11_ABI=0'                                && \
-   #                                                                                          \
-   # Build                                                                                    \
-   #                                                                                          \
-   CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                 \
-   CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                        \
-   CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
-   CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
-   make -j`nproc`                                                                          && \
-   for exe in $(ls bin/*.exe); do mv $exe ${exe%.*}; done                                  && \
-   #                                                                                          \
-   # Install                                                                                  \
-   #                                                                                          \
-   CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                 \
-   CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                        \
-   CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
-   CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                                      \
-   make install || true;                                                                      \
+   export CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                       && \
+   export CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                              && \
+   export CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                            && \
+   export CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                            && \
+   cmake  -G Ninja \
+          -Dtesting=off -Dgnuinstall=ON \
+          -DCMAKE_INSTALL_PREFIX=/usr/local ../src \
+          -DCMAKE_C_FLAGS="$CFLAGS" \
+          -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+          -DCMAKE_BUILD_TYPE=MinSizeRel \
+          -Dminimal=ON \
+          -Dx11=OFF \
+          -Dastiff=OFF \
+          -DCMAKE_INSTALL_DOCDIR=/tmp/rootdel \
+          -DCMAKE_INSTALL_DATAROOTDIR=/tmp/rootdel \
+          -DCMAKE_INSTALL_ELISPDIR=/tmp/rootdel \
+          -DCMAKE_INSTALL_CMAKEDIR=/tmp/rootdel \
+           &&\
+   cmake --build . --target install && \
+   rm -rf /tmp/rootdel && \
    #                                                                                          \
    # Clean                                                                                    \
    #                                                                                          \
