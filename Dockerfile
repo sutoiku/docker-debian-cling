@@ -11,7 +11,7 @@ RUN echo "v20160609"; \
    (apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends ||  \
     apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends) && \
    cd /root && mkdir root6 && cd root6 && echo "Cloning root6" && \
-   git clone --depth 1 --single-branch --branch master https://github.com/root-mirror/root src && \
+   git clone --depth 1 --single-branch --branch master https://github.com/y--/root src && \
    mkdir obj && cd obj                                                                     && \
    export CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                       && \
    export CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                              && \
