@@ -30,6 +30,8 @@ RUN echo "v20160609"; \
           -DCMAKE_INSTALL_DATAROOTDIR=/tmp/rootdel \
           -DCMAKE_INSTALL_ELISPDIR=/tmp/rootdel \
           -DCMAKE_INSTALL_CMAKEDIR=/tmp/rootdel \
+          -DLLVM_ENABLE_THREADS=OFF \
+          -DLLVM_OPTIMIZED_TABLEGEN=ON \
            &&\
    cmake --build . --target install && \
    rm -rf /tmp/rootdel && \
