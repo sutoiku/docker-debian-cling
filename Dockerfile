@@ -1,7 +1,7 @@
 FROM debian:testing
 
 # Install root6 extract cling and delete root6
-RUN echo "v20160609"; \
+RUN echo "v20160721"; \
    apt-get clean -q                                                                        && \
    apt-get update -q     || apt-get update -q                                              && \
    apt-get upgrade -q -y || apt-get upgrade -q -y                                          && \
@@ -13,15 +13,9 @@ RUN echo "v20160609"; \
    cd /root && mkdir root6 && cd root6 && echo "Cloning root6" && \
    git clone --depth 1 --single-branch --branch master https://github.com/y--/root src && \
    mkdir obj && cd obj                                                                     && \
-   export CLINGCXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                       && \
-   export CFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                              && \
-   export CPPFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                            && \
-   export CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0"                                            && \
    cmake  -G Ninja \
           -Dtesting=off -Dgnuinstall=ON \
           -DCMAKE_INSTALL_PREFIX=/usr/local ../src \
-          -DCMAKE_C_FLAGS="$CFLAGS" \
-          -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
           -DCMAKE_BUILD_TYPE=MinSizeRel \
           -Dminimal=ON \
           -Dx11=OFF \
