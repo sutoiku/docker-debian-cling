@@ -1,7 +1,7 @@
 FROM debian:testing
 
 # Install root6 extract cling and delete root6
-RUN echo "v20160907"; \
+RUN echo "v20160916"; \
    apt-get clean -q                                                                        && \
    apt-get update -q     || apt-get update -q                                              && \
    apt-get upgrade -q -y || apt-get upgrade -q -y                                          && \
@@ -24,6 +24,8 @@ RUN echo "v20160907"; \
           -DCMAKE_INSTALL_DATAROOTDIR=/tmp/rootdel \
           -DCMAKE_INSTALL_ELISPDIR=/tmp/rootdel \
           -DCMAKE_INSTALL_CMAKEDIR=/tmp/rootdel \
+          -DLLVM_ENABLE_EH=ON \
+          -DLLVM_ENABLE_RTTI=ON \
           -DLLVM_ENABLE_THREADS=OFF \
           -DLLVM_OPTIMIZED_TABLEGEN=ON \
            &&\
