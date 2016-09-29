@@ -1,8 +1,8 @@
 FROM debian:testing
 
 RUN echo "v20160929"; \
-   apt-get update -q                                                                                       && \
-   apt-get upgrade -q                                                                                      && \
+   apt-get update -q -y                                                                                    && \
+   apt-get upgrade -q -y                                                                                   && \
    export BUILD_PACKAGES='git-core make cmake libz-dev python gcc g++ wget'                                && \
    apt-get install -f -q -y curl ca-certificates $BUILD_PACKAGES --no-install-recommends                   && \
    cd root && mkdir cling-build && cd cling-build                                                          && \
