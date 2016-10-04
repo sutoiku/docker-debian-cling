@@ -1,6 +1,6 @@
 FROM debian:testing
 
-RUN echo "v20160929"; \
+RUN echo "v20161004"; \
    apt-get update -q -y                                                                                    && \
    apt-get upgrade -q -y                                                                                   && \
    export BUILD_PACKAGES='git-core make cmake libz-dev python gcc g++ wget'                                && \
