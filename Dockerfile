@@ -14,7 +14,6 @@ RUN echo "v20161012"; \
             --skip-cleanup                                                                                 && \
    mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
    mv /tmp/cling-obj/lib/libcling.so  /usr/lib                                                             && \
-   mv /tmp/cling-obj/lib              /root/__svg_libs                                                     && \
    mv ~/ci/build/builddir/lib/clang   /usr/lib/
    rm -rf ~/ci /tmp/cling-obj ~/cling-build
 
