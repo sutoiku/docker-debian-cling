@@ -1,6 +1,6 @@
 FROM debian:testing
 
-RUN echo "v20161012"; \
+RUN echo "v20161022"; \
    apt-get update -q -y                                                                                    && \
    apt-get upgrade -q -y                                                                                   && \
    export BUILD_PACKAGES='git-core make cmake libz-dev python gcc g++ wget'                                && \
@@ -13,7 +13,7 @@ RUN echo "v20161012"; \
             --with-llvm-url=http://root.cern.ch/git/llvm.git    \
             --skip-cleanup                                                                                 && \
    mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
-   mv /tmp/cling-obj/lib/libcling.so  /usr/lib                                                             && \
+   mv /tmp/cling-obj/lib/libcling.so  /usr/lib/                                                            && \
    mv ~/ci/build/builddir/lib/clang   /usr/lib/
    rm -rf ~/ci /tmp/cling-obj ~/cling-build
 
