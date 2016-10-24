@@ -16,7 +16,7 @@ RUN echo "v20161022"; \
             --skip-cleanup                                                                                 && \
    mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
    mv /tmp/cling-obj/lib/libcling.so  /usr/lib/                                                            && \
-   mv ~/ci/build/builddir/lib/clang   /usr/lib/
+   mv ~/ci/build/builddir/lib/clang   /usr/lib/                                                            && \
    rm -rf ~/ci /tmp/cling-obj ~/cling-build
 
 ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib/root
