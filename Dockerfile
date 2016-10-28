@@ -17,6 +17,7 @@ RUN apt-get update  -q -y                                                       
     mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
     mv /tmp/cling-obj/lib/libcling.so  /usr/lib/                                                            && \
     mv ~/ci/build/builddir/lib/clang   /usr/lib/                                                            && \
+    ln -s /usr/lib/libcling.so /usr/lib/libCling.so                                                         && \
     rm -rf ~/ci /tmp/cling-obj ~/cling-build \
           /var/lib/apt/lists/*               \
           /usr/share/doc                     \
