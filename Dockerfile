@@ -11,7 +11,7 @@ RUN echo "v20161022"; \
    ./cpt.py --current-dev=tar                                   \
             --with-clang-url=http://root.cern.ch/git/clang.git  \
             --with-llvm-url=http://root.cern.ch/git/llvm.git    \
-            --with-cling-url=https://github.com/Y--/cling.git   \
+            --with-cling-url=https://github.com/sutoiku/cling.git \
             --no-test                                           \
             --skip-cleanup                                                                                 && \
    mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
