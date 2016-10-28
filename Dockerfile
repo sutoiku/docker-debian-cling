@@ -13,7 +13,8 @@ RUN echo "v20161022"; \
             --with-llvm-url=http://root.cern.ch/git/llvm.git    \
             --with-cling-url=https://github.com/sutoiku/cling.git \
             --no-test                                           \
-            --skip-cleanup                                                                                 && \
+            --skip-cleanup                                      \
+            --with-cmake-flags="-DLLVM_ENABLE_EH=ON -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_THREADS=OFF -DLLVM_OPTIMIZED_TABLEGEN=ON" && \
    mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
    mv /tmp/cling-obj/lib/libcling.so  /usr/lib/                                                            && \
    mv ~/ci/build/builddir/lib/clang   /usr/lib/                                                            && \
