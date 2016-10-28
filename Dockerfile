@@ -19,5 +19,4 @@ RUN echo "v20161022"; \
    mv ~/ci/build/builddir/lib/clang   /usr/lib/                                                            && \
    rm -rf ~/ci /tmp/cling-obj ~/cling-build
 
-ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib/root
 ENV ROOT_INCLUDE    /usr/include/c++/6:/usr/include/x86_64-linux-gnu/c++/6:/usr/include/c++/6/backward
