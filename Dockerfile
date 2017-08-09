@@ -24,6 +24,6 @@ RUN apt-get update  -q -y                                                       
           /tmp/*                             \
           /var/log/*                         \
           /var/cache/*                       \
-          /usr/local # 20170614
+          /usr/local # 20170809
 
 ENV ROOT_INCLUDE    /usr/include/c++/6:/usr/include/x86_64-linux-gnu/c++/6:/usr/include/c++/6/backward
