@@ -26,4 +26,4 @@ RUN apt-get update  -q -y                                                       
           /var/cache/*                       \
           /usr/local # 20170828
 
-ENV ROOT_INCLUDE    /usr/include/c++/6:/usr/include/x86_64-linux-gnu/c++/6:/usr/include/c++/6/backward
+ENV ROOT_INCLUDE    /usr/include/c++/7:/usr/include/x86_64-linux-gnu/c++/7:/usr/include/c++/7/backward
