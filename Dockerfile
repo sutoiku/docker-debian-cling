@@ -15,7 +15,7 @@ RUN apt-get update  -q -y                                                       
              --with-cling-url=https://github.com/sutoiku/cling.git \
              --no-test                                             \
              --skip-cleanup                                        \
-             --with-cmake-flags="-DLLVM_ENABLE_EH=ON -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_THREADS=OFF -DLLVM_OPTIMIZED_TABLEGEN=ON" && \
+             --with-cmake-flags="-DLLVM_ENABLE_EH=ON -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_THREADS=OFF -DLLVM_OPTIMIZED_TABLEGEN=ON -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_STANDARD_REQUIRED=ON -DCXX_EXTENSIONS=OFF" && \
     mv /tmp/cling-obj/include/*        /usr/include/                                                        && \
     mv /tmp/cling-obj/lib/libcling.so* /usr/lib/                                                            && \
     mv ~/ci/build/builddir/lib/clang   /usr/lib/                                                            && \
