@@ -7,6 +7,8 @@ RUN apt-get update  -q -y                                                       
     cd root && mkdir cling-build && cd cling-build                                                          && \
     wget https://raw.githubusercontent.com/root-mirror/root/master/interpreter/cling/tools/packaging/cpt.py && \
     chmod +x cpt.py                                                                                         && \
+    export CXX=g++-8                                                                                        && \
+    export CC=gcc-8                                                                                         && \
     ./cpt.py --current-dev=tar                                     \
              --with-clang-url=http://root.cern.ch/git/clang.git    \
              --with-llvm-url=http://root.cern.ch/git/llvm.git      \
